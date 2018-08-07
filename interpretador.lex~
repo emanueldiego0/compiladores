@@ -1,0 +1,76 @@
+%{
+
+/*
+#ifdef __STDC_ALLOC_LIB__
+#define __STDC_WANT_LIB_EXT2__ 1
+#else
+#define _POSIX_C_SOURCE 200809L
+#endif*/
+
+#ifndef YYSTYPE
+#define YYSTYPE long int
+#endif
+
+#include <stdlib.h>
+void yyerror(char *);
+#include "y.tab.h"
+%}
+
+letra	[a-z|A-Z|_] 
+numero	[0-9]
+identificador	{letra}({letra}|{numero})*
+
+%%
+
+
+
+{numero}+	{ yylval = atoi(yytext);
+		  return NUMBER;
+		}
+
+
+integer		{	yylval = INT;
+			return TYPE;
+		}
+real		{
+			yylval = REAL;
+			return TYPE;
+		}
+
+PRINT		{	return PRINT; 
+		}
+
+"program"	{
+			return PROGRAM;
+		}
+
+"var"		{
+			return VAR;
+		}
+
+"begin"		{
+			return BEGIN_;
+		}
+
+"end"		{
+			return END;
+		}
+
+{identificador}	{
+			yylval = (long int) strdup(yytext);
+			return ID;
+		}	
+
+":"		{	return *yytext; }
+
+[-+=();]	{	return *yytext; }
+
+
+
+
+[ \t\n] 	; /* skip whitespace */
+. 	yyerror("invalid character");
+%%
+int yywrap(void) {
+return 1;
+}

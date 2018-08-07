@@ -1,0 +1,14 @@
+program nome_programa;
+var
+	a : integer;
+	b : integer;
+begin
+	a := 1111;
+	write(a);
+	for a := 1 to 10000 do
+	begin
+		b := b + a;
+	end
+	if(a * b) then
+		a := b;
+end
