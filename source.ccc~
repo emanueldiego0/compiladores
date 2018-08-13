@@ -1,8 +1,0 @@
-program nome_programa;
-var
-	a : integer;
-	b : integer;
-begin
-	a = 10;
-	b = 12;
-end

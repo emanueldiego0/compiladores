@@ -46,78 +46,86 @@ extern int yydebug;
   enum yytokentype
   {
     TYPE = 258,
-    INT = 259,
-    REAL = 260,
-    PRINT = 261,
-    NUMBER = 262,
-    ID = 263,
-    EXPR = 264,
-    ATTR = 265,
-    ADD = 266,
-    SUB = 267,
-    BEGIN_ = 268,
-    END = 269,
-    VAR = 270,
-    PROGRAM = 271,
-    ATT = 272,
-    WRITE = 273,
-    IF = 274,
-    THEN = 275,
-    ELSE = 276,
-    FOR = 277,
-    TO = 278,
-    DO = 279,
-    OR = 280,
-    EQ = 281,
-    NE = 282,
-    GE = 283,
-    LE = 284,
-    GT = 285,
-    LT = 286,
-    MULT = 287,
-    DIVR = 288,
-    DIVI = 289,
-    MOD = 290,
-    AND = 291,
-    NOT = 292
+    REAL = 259,
+    INTEGER = 260,
+    ID = 261,
+    BEGIN_ = 262,
+    END = 263,
+    WHILE = 264,
+    DO = 265,
+    IF = 266,
+    ELSE = 267,
+    THEN = 268,
+    EXPR = 269,
+    ATTR = 270,
+    VAR = 271,
+    STMT = 272,
+    STMTS = 273,
+    BLOCO = 274,
+    PROGRAM = 275,
+    EXPR_LOG = 276,
+    COND = 277,
+    REPT = 278,
+    ATT = 279,
+    ADD = 280,
+    SUB = 281,
+    OR = 282,
+    MULT = 283,
+    DIVR = 284,
+    DIVI = 285,
+    MOD = 286,
+    AND = 287,
+    EQ = 288,
+    NE = 289,
+    GE = 290,
+    LE = 291,
+    GT = 292,
+    LT = 293,
+    NOT = 294,
+    NUMBER = 295,
+    UMINUS = 296
   };
 #endif
 /* Tokens.  */
 #define TYPE 258
-#define INT 259
-#define REAL 260
-#define PRINT 261
-#define NUMBER 262
-#define ID 263
-#define EXPR 264
-#define ATTR 265
-#define ADD 266
-#define SUB 267
-#define BEGIN_ 268
-#define END 269
-#define VAR 270
-#define PROGRAM 271
-#define ATT 272
-#define WRITE 273
-#define IF 274
-#define THEN 275
-#define ELSE 276
-#define FOR 277
-#define TO 278
-#define DO 279
-#define OR 280
-#define EQ 281
-#define NE 282
-#define GE 283
-#define LE 284
-#define GT 285
-#define LT 286
-#define MULT 287
-#define DIVR 288
-#define DIVI 289
-#define MOD 290
-#define AND 291
-#define NOT 292
+#define REAL 259
+#define INTEGER 260
+#define ID 261
+#define BEGIN_ 262
+#define END 263
+#define WHILE 264
+#define DO 265
+#define IF 266
+#define ELSE 267
+#define THEN 268
+#define EXPR 269
+#define ATTR 270
+#define VAR 271
+#define STMT 272
+#define STMTS 273
+#define BLOCO 274
+#define PROGRAM 275
+#define EXPR_LOG 276
+#define COND 277
+#define REPT 278
+#define ATT 279
+#define ADD 280
+#define SUB 281
+#define OR 282
+#define MULT 283
+#define DIVR 284
+#define DIVI 285
+#define MOD 286
+#define AND 287
+#define EQ 288
+#define NE 289
+#define GE 290
+#define LE 291
+#define GT 292
+#define LT 293
+#define NOT 294
+#define NUMBER 295
+#define UMINUS 296
 
 /* Value type.  */
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED

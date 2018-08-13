@@ -28,7 +28,7 @@ identificador	{letra}({letra}|{numero})*
 {numero}+	   { 
 	valor v;
 	v.dval = atoi(yytext);
-	yylval = (long int) criar_numero(v, INT);
+	yylval = (long int) criar_numero(v, INTEGER);
 	return NUMBER;
 }
 
@@ -40,15 +40,12 @@ identificador	{letra}({letra}|{numero})*
 }
 
 
-integer		{	yylval = INT;
+integer		{	yylval = INTEGER;
 			return TYPE;
 		}
 real		{
 			yylval = REAL;
 			return TYPE;
-		}
-
-PRINT		{	return PRINT; 
 		}
 
 "if"		{	return IF;
@@ -60,10 +57,7 @@ PRINT		{	return PRINT;
 "then"		{	return THEN;
 		}
 
-"for"		{	return FOR;
-		}
-
-"to"		{	return TO;
+"while"		{	return WHILE;
 		}
 
 "do"		{	return DO;
@@ -86,9 +80,6 @@ PRINT		{	return PRINT;
 
 "end"		{
 			return END;
-		}
-
-"write"		{	return WRITE;
 		}		
 
 "+"			{return ADD;}

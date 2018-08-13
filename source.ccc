@@ -4,8 +4,7 @@ var
 	b : integer;
 begin
 	a := 1111;
-	write(a);
-	for a := 1 to 10000 do
+	while(a <= 10000) do
 	begin
 		b := b + a;
 	end
