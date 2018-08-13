@@ -19,7 +19,7 @@ y.tab.o:		y.tab.c y.tab.h
 			gcc y.tab.c -c
 
 y.tab.c:		interpretador.yacc
-			yacc interpretador.yacc -d
+			yacc interpretador.yacc -d --debug --verbose
 
 y.tab.h:		interpretador.yacc
 			yacc interpretador.yacc -d

@@ -18,7 +18,7 @@ pilha_contexto *pilha;
 %token TYPE REAL INTEGER ID BEGIN_ END
 %token WHILE DO
 %token IF ELSE THEN
-%token EXPR ATTR VAR STMT STMTS BLOCO PROGRAM EXPR_LOG COND REPT ATT
+%token EXPR ATTR VAR STMT STMTS BLOCO PROGRAM EXPR_LOG COND REPT ATT WRITELN READ
 %left ADD SUB OR
 %left MULT DIVR DIVI MOD AND
 %left EQ NE GE LE GT LT
@@ -33,6 +33,7 @@ pilha_contexto *pilha;
 code:
 			
 	init var_area bloco
+	|
 	;
 
 init:
@@ -48,20 +49,21 @@ var_area:
 
 
 
-bloco: 
+bloco:  
+	//decls			{ }
 	BEGIN_ 			{ 
-				imprimir_contexto(topo_pilha(pilha));
-				tabela *contexto = criar_contexto(topo_pilha(pilha));
-				pilha = empilhar_contexto(pilha, contexto);
-
-				 }
-
-	stmts END		{ 
-				imprimir_contexto(topo_pilha(pilha));
-				desempilhar_contexto(&pilha); 
+					imprimir_contexto(topo_pilha(pilha));
+					tabela *contexto = criar_contexto(topo_pilha(pilha));
+					pilha = empilhar_contexto(pilha, contexto);
+				}
+	
+			
+	var_area stmts END	{ 
+					imprimir_contexto(topo_pilha(pilha));
+					desempilhar_contexto(&pilha); 
 				
-				no_arvore *n = criar_no_bloco((void *) $2);
-				$$ = (long int) n;
+					no_arvore *n = criar_no_bloco((void *) $2);
+					$$ = (long int) n;
 				}
 	;
 
@@ -72,7 +74,7 @@ decls:
 
 decl:
 	ID ':' TYPE ';'			{	
-	simbolo * s = localizar_simbolo(topo_pilha(pilha), (char *) $1);
+	simbolo * s = localizar_simbolo_contexto_topo(topo_pilha(pilha), (char *) $1);
 	if(s == NULL) {
 		simbolo * s = criar_simbolo((char *) $1, $3);
 		inserir_simbolo(topo_pilha(pilha), s); 
@@ -81,6 +83,7 @@ decl:
 		}
 	}
 	;
+
 stmts: 
 	stmts stmt		{
 				no_arvore *n = criar_no_stmts((void *) $1, (void *) $2);
@@ -110,6 +113,31 @@ stmt:
 			no_arvore *n = criar_no_stmt((void *) $1);
 			$$ = (long int) n;
 			}
+	| write		{
+			no_arvore *n = criar_no_writeln((void *) $1);
+			$$ = (long int) n;
+			}
+	| read		{
+			no_arvore *n = criar_no_read((void *) $1);
+			$$ = (long int) n;
+			}
+			
+	;
+
+write:	WRITELN '(' expr ')'	{ no_arvore *n = criar_no_writeln((void *) $3); 
+					$$ = (long int) n;}	
+	;
+
+read:	READ '(' ID ')'		{
+					simbolo* s = localizar_simbolo_contexto_topo (topo_pilha(pilha), (char*) $3);
+        				if(s != NULL){
+				            no_arvore* n = criar_no_read(s);
+			        	    $$ = (long int) n;
+				        }else{
+            					yyerror("Identificador não declarado");
+        				}
+        
+				}
 	;
 
 cond:	IF '(' expr_log ')' THEN stmt 	

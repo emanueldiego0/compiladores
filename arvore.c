@@ -141,3 +141,32 @@ t_rept * criar_rept(void *cond, void *corpo){
 	return novo;
 }
 //Repeticao FIM
+
+//WriteLn INICIO
+no_arvore * criar_no_writeln(void *expr){
+	no_arvore *novo = (no_arvore *)  malloc(sizeof(no_arvore));
+	novo->tipo = WRITELN;
+	novo->dado.writeln =  criar_writeln(expr);
+	return novo;
+}
+
+t_writeln * criar_writeln(void *expr){ 
+	t_writeln * novo = (t_writeln *) malloc(sizeof(t_writeln));
+	novo->expr = expr;
+	return novo;
+}
+//WriteLn FIM
+
+//Read INICIO
+no_arvore * criar_no_read(void *id){
+	no_arvore *novo = (no_arvore *)  malloc(sizeof(no_arvore));
+	novo->tipo = READ;
+	novo->dado.read =  criar_read(id);
+	return novo;
+}
+t_read * criar_read(void *id){ 
+	t_read * novo = (t_read *) malloc(sizeof(t_read));
+	novo->id = id;
+	return novo;
+}
+//Read FIM

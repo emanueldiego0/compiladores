@@ -33,6 +33,21 @@ simbolo * localizar_simbolo (tabela *contexto, char *lexema){
 }
 
 
+simbolo * localizar_simbolo_contexto_topo (tabela *contexto, char *lexema){
+	if(contexto != NULL){
+		no_tabela *temp = contexto->primeiro;
+	
+		while(temp != NULL) {
+			if(strcmp(temp->dado->lexema, lexema) == 0) {
+				return temp->dado;
+			}
+		temp = temp->proximo;
+		}
+	}
+	return NULL;
+}
+
+
 simbolo *  criar_simbolo (char *lexema, int tipo) {
 	simbolo *novo = (simbolo *) malloc(sizeof(simbolo));
 	novo->tipo = tipo;

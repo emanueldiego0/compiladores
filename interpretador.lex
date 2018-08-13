@@ -80,7 +80,15 @@ real		{
 
 "end"		{
 			return END;
-		}		
+		}
+
+"writeln" 	{ 
+			return WRITELN;
+		}
+
+"read" 		{ 
+			return READ;
+		}	
 
 "+"			{return ADD;}
 "-"			{return SUB;}
@@ -114,8 +122,10 @@ real		{
 
 
 [ \t\n] 	; /* skip whitespace */
-. 	yyerror("invalid character");
+. 		yyerror("invalid character");
 %%
+
+
 int yywrap(void) {
 return 1;
 }

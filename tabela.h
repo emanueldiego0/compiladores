@@ -31,6 +31,7 @@ typedef struct pilha_contexto  {
 
 void inserir_simbolo(tabela *t, simbolo *s);
 simbolo * localizar_simbolo (tabela *contexto, char *lexema);
+simbolo * localizar_simbolo_contexto_topo (tabela *contexto, char *lexema);
 simbolo *  criar_simbolo (char *lexema, int tipo);
 
 pilha_contexto* empilhar_contexto(pilha_contexto *pilha, tabela *contexto);

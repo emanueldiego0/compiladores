@@ -46,6 +46,14 @@ typedef struct t_bloco {
 	void *corpo;
 } t_bloco;
 
+typedef struct t_writeln {
+	void *expr;
+} t_writeln;
+
+typedef struct t_read {
+	void *id;
+} t_read;
+
 typedef struct t_program {
 	void *program_e, *program_d;
 } t_program;
@@ -60,6 +68,8 @@ typedef union valor_sintatico {
 	t_stmts *stmts;
 	t_stmt *stmt;
 	t_expr_log *expr_log;
+	t_writeln *writeln;
+	t_read *read;
 } valor_sintatico;
 
 typedef struct no_arvore {
@@ -87,7 +97,13 @@ no_arvore * criar_no_condicional(void *logica, void *_if, void *_else);
 t_cond * criar_condicional(void *logica, void *_if, void *_else);
 
 no_arvore * criar_no_rept(void *cond, void *corpo);
-t_rept * criar_rept();
+t_rept * criar_rept(void *cond, void *corpo);
+
+no_arvore * criar_no_writeln(void *expr);
+t_writeln * criar_writeln(void *expr);
+
+no_arvore * criar_no_read(void *id);
+t_read * criar_read(void *id);
 
 no_arvore * criar_no_bloco(void *stmts);
 t_bloco * criar_bloco(void *stmts);

@@ -1,13 +1,26 @@
 program nome_programa;
 var
 	a : integer;
-	b : integer;
 begin
-	a := 1111;
-	while(a <= 10000) do
+	var
+		a : integer;
+
+	if(a >= 10) then
 	begin
-		b := b + a;
+		a := 10;
 	end
-	if(a * b) then
-		a := b;
+	else
+	begin
+		a := 11;
+	end
+
+	begin
+	var
+		a : integer;
+	
+		while(a < 10) do
+		begin
+			a := a + 1;
+		end
+	end
 end
