@@ -32,11 +32,12 @@ begin
 		begin
 			a := b + c;
 		end
-
-	begin
-		var
+	
+	var
 			a:integer;
 			b:integer;
+	begin
+		
 		writeln(a);
 		read(b);
 	end

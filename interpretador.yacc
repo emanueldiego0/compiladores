@@ -24,15 +24,18 @@ pilha_contexto *pilha;
 %left EQ NE GE LE GT LT
 %left NOT
 %token NUMBER
-%right UMINUS
 
+
+%nonassoc _ELSE
+%nonassoc UMINUS
+%nonassoc ELSE
 
 %%
 
 
 code:
 			
-	init var_area bloco
+	init bloco
 	|
 	;
 
@@ -41,6 +44,7 @@ init:
 					tabela *contexto = criar_contexto(topo_pilha(pilha));
 					pilha = empilhar_contexto(pilha, contexto);
 				}
+	;
 
 var_area:
 	VAR decls		{ }
@@ -50,15 +54,14 @@ var_area:
 
 
 bloco:  
-	//decls			{ }
-	BEGIN_ 			{ 
+	var_area		{ }	
+	BEGIN_			{ 
 					imprimir_contexto(topo_pilha(pilha));
 					tabela *contexto = criar_contexto(topo_pilha(pilha));
 					pilha = empilhar_contexto(pilha, contexto);
 				}
 	
-			
-	var_area stmts END	{ 
+	stmts END		{ 
 					imprimir_contexto(topo_pilha(pilha));
 					desempilhar_contexto(&pilha); 
 				
@@ -66,6 +69,7 @@ bloco:
 					$$ = (long int) n;
 				}
 	;
+
 
 decls: 
 	decls decl		{ }
@@ -144,7 +148,7 @@ cond:	IF '(' expr_log ')' THEN stmt
 			{
 			no_arvore *n = criar_no_condicional((void *) $3, (void *) $6, NULL);
 			$$ = (long int) n;
-			}
+			} %prec _ELSE
 	| IF '(' expr_log ')' THEN stmt ELSE stmt
 			{
 			no_arvore *n = criar_no_condicional((void *) $3, (void *) $6, (void *) $8);
