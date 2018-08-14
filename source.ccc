@@ -1,26 +1,43 @@
 program nome_programa;
 var
 	a : integer;
+	b : integer;
+	c : integer;
+	d : real;
 begin
-	var
-		a : integer;
+	a := a + b;
+	a := a - b;
+	a := a * b;
+	a := a / b;
 
-	if(a >= 10) then
+	if(a > b) then
+		c := a;
+	else if(a <> c) then
+		c := a;
+
+	while((a + 1) >= b) do
 	begin
-		a := 10;
-	end
-	else
-	begin
-		a := 11;
+		a := a + 1;
 	end
 
-	begin
-	var
-		a : integer;
+	writeln(a);
+	read(a);
+	writeln(a + b);
 	
-		while(a < 10) do
+	if(a <> b) then
 		begin
-			a := a + 1;
+			a := a + b;
 		end
+	else
+		begin
+			a := b + c;
+		end
+
+	begin
+		var
+			a:integer;
+			b:integer;
+		writeln(a);
+		read(b);
 	end
 end

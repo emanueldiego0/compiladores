@@ -74,13 +74,13 @@ decls:
 
 decl:
 	ID ':' TYPE ';'			{	
-	simbolo * s = localizar_simbolo_contexto_topo(topo_pilha(pilha), (char *) $1);
-	if(s == NULL) {
-		simbolo * s = criar_simbolo((char *) $1, $3);
-		inserir_simbolo(topo_pilha(pilha), s); 
-	} else {
-		yyerror("Identificador já declarado");
-		}
+			simbolo * s = localizar_simbolo_contexto_topo(topo_pilha(pilha), (char *) $1);
+			if(s == NULL) {
+				simbolo * s = criar_simbolo((char *) $1, $3);
+				inserir_simbolo(topo_pilha(pilha), s); 
+			} else 	{
+				yyerror("Identificador já declarado");
+				}
 	}
 	;
 
@@ -124,12 +124,12 @@ stmt:
 			
 	;
 
-write:	WRITELN '(' expr ')'	{ no_arvore *n = criar_no_writeln((void *) $3); 
+write:	WRITELN '(' expr ')'';'	{ no_arvore *n = criar_no_writeln((void *) $3); 
 					$$ = (long int) n;}	
 	;
 
-read:	READ '(' ID ')'		{
-					simbolo* s = localizar_simbolo_contexto_topo (topo_pilha(pilha), (char*) $3);
+read:	READ '(' ID ')'';'		{
+					simbolo* s = localizar_simbolo(topo_pilha(pilha), (char*) $3);
         				if(s != NULL){
 				            no_arvore* n = criar_no_read(s);
 			        	    $$ = (long int) n;
