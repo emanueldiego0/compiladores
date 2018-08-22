@@ -1,0 +1,14 @@
+arvore.c
+arvore.h
+interpretador.lex
+interpretador.yacc
+makefile
+README.md
+source.ccc
+tabela.c
+tabela.h
+tabelaNumero.c
+tabelaNumero.h
+teste
+teste.txt
+y.output
